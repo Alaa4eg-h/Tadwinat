@@ -1,3 +1,168 @@
+:root {
+  --first-color: #5b4834;
+  --second-color: #aaa69d;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
 * {
   font-family: "Cairo", sans-serif;
 }
+
+body {
+  background-color: #f3f3f3;
+}
+
+nav.navbar {
+  background-color: #fff !important;
+  border-bottom: 1px solid #eaeaea;
+}
+
+/* START CONTENT */
+.content {
+  margin-top: 60px;
+}
+
+.content .post {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px 22px;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 30px;
+}
+
+.post .post-image {
+  width: 100%;
+}
+.post .post-image img {
+  width: 100%;
+  height: 350px;
+}
+
+.post .post-title {
+  margin: 10px 0;
+}
+
+.post .post-details button.btn-custom {
+  background-color: transparent;
+  color: var(--first-color);
+  border: 1px solid var(--first-color);
+  border-radius: 0;
+  font-size: 16px;
+  width: 110px;
+  margin-bottom: 10px;
+}
+
+.post .post-details button.btn-custom:hover {
+  background-color: var(--first-color);
+  color: #fff;
+}
+
+.post .post-details .post-info {
+  color: var(--second-color);
+}
+
+.post .post-details .post-info span {
+  margin-right: 10px;
+}
+
+.post .post-details .post-info span i {
+  padding-left: 5px;
+}
+
+/* END CONTENT */
+
+/* START SIDEBAR */
+.categories {
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+}
+
+.categories h4 {
+  text-align: center;
+  border-bottom: 1px solid var(--second-color);
+  padding-bottom: 10px;
+}
+
+.categories ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categories ul li {
+  background-color: var(--first-color);
+  margin-bottom: 3px;
+  border-radius: 2px;
+  padding: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.categories ul li:hover {
+  background-color: var(--second-color);
+}
+.categories ul li a {
+  color: #fff;
+}
+
+.last-post {
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+  padding: 20px 10px;
+}
+
+.last-post h4 {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.last-post ul {
+  list-style: none;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+.last-post ul li {
+  border-bottom: 1px solid var(--second-color);
+  margin-bottom: 10px;
+  padding: 10px 0;
+}
+
+.last-post ul li:first-child {
+  border-top: 1px solid var(--second-color);
+}
+.last-post ul li:last-child {
+  border-bottom: 0;
+}
+
+.last-post ul li .span-image {
+  float: right;
+  margin-left: 5px;
+}
+
+.last-post ul li .span-image img {
+  width: 80px;
+  height: 60px;
+}
+.last-post ul li a {
+  color: var(--first-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.last-post ul li a:hover {
+  color: var(--second-color);
+}
+/* END SIDEBAR */
+
+/* START FOOTER */
+footer {
+  background-color: #fff;
+  border-top: 1px solid #eeeeee;
+  text-align: center;
+  padding: 10px 0;
+}
+/* END FOOTER */
