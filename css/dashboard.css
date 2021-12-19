@@ -1,0 +1,48 @@
+:root {
+  --first-color: #5b4834;
+  --second-color: #aaa69d;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+* {
+  font-family: "Cairo", sans-serif;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+#side-area {
+  background-color: var(--first-color);
+  color: #fff;
+  padding: 20px 0;
+}
+
+#side-area h4 {
+  text-align: center;
+}
+
+#side-area ul {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+}
+
+#side-area ul li {
+  background-color: var(--second-color);
+  margin-bottom: 5px;
+  padding: 5px 0;
+}
+
+#side-area ul li a {
+  color: #fff;
+}
+#side-area #menu {
+  margin: 0;
+}
+#side-area #menu li {
+  background-color: #000;
+}
