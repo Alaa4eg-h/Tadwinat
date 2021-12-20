@@ -23,6 +23,7 @@ body {
 
 #side-area h4 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 #side-area ul {
@@ -46,3 +47,17 @@ body {
 #side-area #menu li {
   background-color: #000;
 }
+
+/* START CATEGORIES */
+.add-category {
+  margin-top: 30px;
+}
+.btn-custom {
+  background-color: var(--first-color);
+  color: #fff;
+  border: 1px solid var(--first-color);
+  padding: 5px 10px;
+  width: 100px;
+  margin-top: 10px;
+}
+/* END CATEGORIES */

@@ -1,38 +1,4 @@
-<?php
-
-include 'include/connection.php';
-include 'include/header.php';
-
-
-
-
-
-
-if (isset($_POST['add'])) {
-    $cName = $_POST['category'];
-    $cAdd = $_POST['add'];
-
-
-
-    if (empty($cName)) {
-        echo "برجاء كتابة اسم التصنيف";
-    } elseif (strlen($cName) > 100) {
-        echo "برجاء كتابة عدد حروف لا تزيد عن 100 حرف";
-    } else {
-        $query = "INSERT INTO categories (categoryName) VALUES ('$cName')";
-
-        mysqli_query($conn, $query);
-        echo "تمت إضافة التصنيف بنجاح";
-    }
-}
-
-
-
-
-
-
-?>
-
+<?php include 'include/header.php'; ?>
 
 <!-- START CONTENT -->
 <div class="content">
@@ -42,7 +8,7 @@ if (isset($_POST['add'])) {
                 <h4>لوحة التحكم</h4>
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="categories.php">
                             <span><i class="fas fa-tag"></i></span>
                             <span>التصنيفات</span>
                         </a>
@@ -83,45 +49,69 @@ if (isset($_POST['add'])) {
                 </ul>
             </div>
             <div class="col-md-10" id="main-area">
+                <button class="btn btn-custom">مقال جديد</button>
                 <div class="add-category">
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <form action="">
                         <div class="form-group">
-                            <label for="category">تصنيف جديد</label>
-                            <input type="text" name="category" class="form-control">
+                            <label for="title">عنوان المقال</label>
+                            <input type="text" name="title" class="form-control">
                         </div>
-                        <button class="btn btn-custom" name="add">إضافة</button>
+
+                        <div class="form-group">
+                            <label for="cate">التصنيف</label>
+                            <select name="" id="cate" class="form-control">
+                                <option value="">بلوجر</option>
+                                <option value="">php</option>
+                                <option value="">برمجة</option>
+                                <option value="">بلوجر</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">صورة المقال</label>
+                            <input type="file" name="" id="image" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="content">نص المقال</label>
+                            <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                        </div>
+                        <button class="btn btn-custom">نشر المقال</button>
                     </form>
                 </div>
-
-
-                <!-- DISPLAY CATEGORIES -->
-                <div class="disply-cat mt-5">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>رقم الفئة</th>
-                                <th>إسم الفئة</th>
-                                <th>تاريخ الإضافة</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $query = "SELECT * FROM categories";
-                            $result = mysqli_query($conn, $query);
-
-                            while ($row = mysqli_fetch_assoc($result)) {
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
             </div>
-
         </div>
     </div>
 </div>
 <!-- END CONTENT -->
 
-
-
 <?php include 'include/footer.php'; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- JQUERY  -->
+<script src="js/jquery-3.6.0.min.js"></script>
+<!-- FONT AWESOME -->
+<script src="https://kit.fontawesome.com/44c61da6d8.js" crossorigin="anonymous"></script>
+<!-- BOOSTRAP JS -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
