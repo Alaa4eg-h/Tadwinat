@@ -1,24 +1,10 @@
 <?php
-
 include 'include/connection.php';
 include 'include/header.php';
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>
 
 
-<!-- START CONTENT -->
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -26,7 +12,7 @@ include 'include/header.php';
                 <h4>لوحة التحكم</h4>
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="categories.php">
                             <span><i class="fas fa-tag"></i></span>
                             <span>التصنيفات</span>
                         </a>
@@ -67,71 +53,69 @@ include 'include/header.php';
                 </ul>
             </div>
             <div class="col-md-10" id="main-area">
-                <div class="add-category">
-                    <?php
-                    if (isset($_POST['add'])) {
-                        $cName = $_POST['category'];
-                        $cAdd = $_POST['add'];
+                <!-- DISPLAY ALL POSTS -->
+                <div class="display-posts mt-4">
 
-                        if (empty($cName)) {
-                            echo "<div class='alert alert-danger text-center mt-4'>" . "برجاء كتابة اسم التصنيف" . "</div>";
-                        } elseif (strlen($cName) > 100) {
-                            echo "<div class='alert alert-danger text-center mt-4'>" . "برجاء كتابة عدد حروف لا تزيد عن 100 حرف"
-                                . "</div>";
-                        } else {
-                            $query = "INSERT INTO categories (categoryName) VALUES ('$cName')";
-
-                            mysqli_query($conn, $query);
-                            echo
-                            "<div class='alert alert-success text-center mt-4'>" . "تمت إضافة التصنيف بنجاح"  . "</div>";
-                        }
-                    }
-                    ?>
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-                        <div class="form-group">
-                            <label for="category">تصنيف جديد</label>
-                            <input type="text" name="category" class="form-control">
-                        </div>
-                        <button class="btn btn-custom" name="add">إضافة</button>
-                    </form>
-                </div>
-
-
-                <!-- DISPLAY CATEGORIES -->
-                <div class="disply-cat mt-5">
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>رقم الفئة</th>
-                                <th>إسم الفئة</th>
-                                <th>تاريخ الإضافة</th>
+                                <th>رقم المقال</th>
+                                <th>عنوان المقال</th>
+                                <th>كاتب المقال</th>
+                                <th>صورة المقال</th>
+                                <th>تاريخ المقال</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $query = "SELECT * FROM categories ORDER BY categoryDate DESC";
-                            $result = mysqli_query($conn, $query);
+
+                            $query = "SELECT * FROM posts  ORDER BY id DESC";
+
+                            $res = mysqli_query($conn, $query);
+
                             $num = 0;
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $num++;
+
+                            while ($row = mysqli_fetch_assoc($res)) {
+                                $num++
                             ?>
+
                             <tr>
-                                <td><?php echo $num; ?></td>
-                                <td><?php echo $row['categoryName']; ?></td>
-                                <td><?php echo $row['categoryDate']; ?></td>
+                                <td><?php echo $num ?></td>
+                                <td><?php echo $row['postTitle']  ?></td>
+                                <td><?php echo $row['postAuthor']  ?></td>
+                                <td><?php echo $row['PostImage']  ?></td>
+                                <td><?php echo $row['postDate']  ?></td>
+
                             </tr>
+
                             <?php
+
                             }
+
                             ?>
                         </tbody>
                     </table>
                 </div>
+
+
             </div>
 
         </div>
     </div>
 </div>
-<!-- END CONTENT -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

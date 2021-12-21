@@ -60,4 +60,9 @@ body {
   width: 100px;
   margin-top: 10px;
 }
+
+thead {
+  background-color: var(--first-color);
+  color: #fff;
+}
 /* END CATEGORIES */

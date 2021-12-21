@@ -1,4 +1,13 @@
-<?php include 'include/header.php'; ?>
+<?php
+include 'include/connection.php';
+include 'include/header.php';
+
+
+
+
+
+
+?>
 
 <!-- START CONTENT -->
 <div class="content">
@@ -28,7 +37,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="posts.php">
                                 <span><i class="fa fa-th-large"></i></span>
                                 <span>كل المقالات</span>
                             </a>
@@ -51,7 +60,49 @@
             <div class="col-md-10" id="main-area">
                 <button class="btn btn-custom">مقال جديد</button>
                 <div class="add-category">
-                    <form action="">
+
+                    <?php
+
+
+                    if (isset($_POST['add'])) {
+                        //  VARIABLES
+                        $pTitle = $_POST['title'];
+                        $pCategory = $_POST['cate'];
+                        $pContent = $_POST['content'];
+                        $pAuthor = "علاء توفيق إبراهيم";
+                        $pAdd = $_POST['add'];
+
+
+                        // images
+                        $imageName = $_FILES['postImage']['name'];
+                        $imageTmp = $_FILES['postImage']['tmp_name'];
+
+
+                        if (empty($pTitle) || empty($pContent)) {
+                            echo "<div class='alert alert-danger'>" .  "برجاء ملئ الحقول أدناه" . "</div>";
+                        } elseif (strlen($pContent) > 10000) {
+                            echo "<div class='alert alert-danger'>" .  "لقد تجاوزت عدد الحروف المسموح للنشر" . "</div>";
+                        } else {
+                            $postImage = rand(0, 1000) . "_" . $imageName;
+                            move_uploaded_file($imageTmp, "uploads\\ . $postImage");
+
+                            $query =
+                                "INSERT INTO posts (postTitle,postCategory,postImage,postContent,postAuthor) 
+            VALUES ('$pTitle','$pCategory','$postImage','$pContent','$pAuthor') ";
+
+                            $res = mysqli_query($conn, $query);
+
+                            if (isset($res)) {
+                                echo "<div class='alert alert-success'>" . "تمت إضافة المقال بنجاح" . "</div>";
+                            } else {
+                                echo "<div class='alert alert-danger'>" . "حدث خطأ ما" . "</div>";
+                            }
+                        }
+                    }
+
+                    ?>
+
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="title">عنوان المقال</label>
                             <input type="text" name="title" class="form-control">
@@ -59,23 +110,33 @@
 
                         <div class="form-group">
                             <label for="cate">التصنيف</label>
-                            <select name="" id="cate" class="form-control">
-                                <option value="">بلوجر</option>
-                                <option value="">php</option>
-                                <option value="">برمجة</option>
-                                <option value="">بلوجر</option>
+                            <select name="cate" id="cate" class="form-control">
+                                <?php
+                                $query = "SELECT * FROM categories";
+                                $res = mysqli_query($conn, $query);
+
+                                while ($row = mysqli_fetch_assoc($res)) {
+
+                                ?>
+                                <option value="category">
+                                    <?Php echo $row['categoryName'] ?>
+                                </option>
+
+                                <?php
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="image">صورة المقال</label>
-                            <input type="file" name="" id="image" class="form-control">
+                            <input type="file" name="postImage" id="image" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label for="content">نص المقال</label>
-                            <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                            <textarea name="content" id="" cols="30" rows="10" class="form-control"></textarea>
                         </div>
-                        <button class="btn btn-custom">نشر المقال</button>
+                        <button class="btn btn-custom" name="add">نشر المقال</button>
                     </form>
                 </div>
             </div>
