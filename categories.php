@@ -4,10 +4,7 @@ include 'include/connection.php';
 include 'include/header.php';
 
 
-
-
-
-
+$id = $_GET['id'] ?? null;
 
 
 
@@ -53,7 +50,7 @@ include 'include/header.php';
                         </li>
                     </ul>
                     <li>
-                        <a href="#">
+                        <a href="index.php" target="_blank">
                             <span><i class="fas fa-tag"></i></span>
                             <span>عرض الموقع</span>
                         </a>
@@ -74,9 +71,9 @@ include 'include/header.php';
                         $cAdd = $_POST['add'];
 
                         if (empty($cName)) {
-                            echo "<div class='alert alert-danger text-center mt-4'>" . "برجاء كتابة اسم التصنيف" . "</div>";
+                            echo "<div class='alert alert-danger text-center'>" . "برجاء كتابة اسم التصنيف" . "</div>";
                         } elseif (strlen($cName) > 100) {
-                            echo "<div class='alert alert-danger text-center mt-4'>" . "برجاء كتابة عدد حروف لا تزيد عن 100 حرف"
+                            echo "<div class='alert alert-danger text-center'>" . "برجاء كتابة عدد حروف لا تزيد عن 100 حرف"
                                 . "</div>";
                         } else {
                             $query = "INSERT INTO categories (categoryName) VALUES ('$cName')";
@@ -86,6 +83,8 @@ include 'include/header.php';
                             "<div class='alert alert-success text-center mt-4'>" . "تمت إضافة التصنيف بنجاح"  . "</div>";
                         }
                     }
+
+
                     ?>
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
                         <div class="form-group">
@@ -99,12 +98,31 @@ include 'include/header.php';
 
                 <!-- DISPLAY CATEGORIES -->
                 <div class="disply-cat mt-5">
+                    <?php
+                    if (isset($id)) {
+
+
+                        $query = "DELETE FROM categories WHERE id = '$id'";
+
+                        $delete =
+                            mysqli_query($conn, $query);
+
+                        if (isset($delete)) {
+                            echo "<div class='alert alert-success text-center mt-4'>" . "تم حذف التصنيف بنجاح" . "</div>";
+                        } else {
+                            echo "<div class='alert alert-danger text-center mt-4'>" . "حدث خطأ ما" . "</div>";
+                        }
+                    }
+
+                    ?>
+
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>رقم الفئة</th>
                                 <th>إسم الفئة</th>
                                 <th>تاريخ الإضافة</th>
+                                <th>حذف التصنيف</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,6 +137,10 @@ include 'include/header.php';
                                 <td><?php echo $num; ?></td>
                                 <td><?php echo $row['categoryName']; ?></td>
                                 <td><?php echo $row['categoryDate']; ?></td>
+                                <td><a href="categories.php?id=<?php echo $row['id'] ?>"><button
+                                            class="btn btn-custom">حذف
+                                            التصنيف</button></a></td>
+
                             </tr>
                             <?php
                             }

@@ -44,7 +44,7 @@ include 'include/header.php';
                         </li>
                     </ul>
                     <li>
-                        <a href="#">
+                        <a href="index.php" target="_blank">
                             <span><i class="fas fa-tag"></i></span>
                             <span>عرض الموقع</span>
                         </a>
@@ -84,11 +84,11 @@ include 'include/header.php';
                             echo "<div class='alert alert-danger'>" .  "لقد تجاوزت عدد الحروف المسموح للنشر" . "</div>";
                         } else {
                             $postImage = rand(0, 1000) . "_" . $imageName;
-                            move_uploaded_file($imageTmp, "uploads\\ . $postImage");
+                            move_uploaded_file($imageTmp, "uploads\\$postImage");
 
                             $query =
                                 "INSERT INTO posts (postTitle,postCategory,postImage,postContent,postAuthor) 
-            VALUES ('$pTitle','$pCategory','$postImage','$pContent','$pAuthor') ";
+                                VALUES ('$pTitle','$pCategory','$postImage','$pContent','$pAuthor') ";
 
                             $res = mysqli_query($conn, $query);
 
@@ -110,7 +110,7 @@ include 'include/header.php';
 
                         <div class="form-group">
                             <label for="cate">التصنيف</label>
-                            <select name="cate" id="cate" class="form-control">
+                            <select id="cate" class="form-control">
                                 <?php
                                 $query = "SELECT * FROM categories";
                                 $res = mysqli_query($conn, $query);
@@ -118,7 +118,7 @@ include 'include/header.php';
                                 while ($row = mysqli_fetch_assoc($res)) {
 
                                 ?>
-                                <option value="category">
+                                <option value="<?Php echo $row['categoryName'] ?>" name="cate">
                                     <?Php echo $row['categoryName'] ?>
                                 </option>
 

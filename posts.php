@@ -2,6 +2,13 @@
 include 'include/connection.php';
 include 'include/header.php';
 
+
+
+$id = $_GET['id'] ?? null;
+
+
+
+
 ?>
 
 
@@ -32,14 +39,14 @@ include 'include/header.php';
                             </a>
                         </li>
                         <li>
-                            <a href="posts.php">
+                            <a href="posts.php" target="_blank">
                                 <span><i class="fa fa-th-large"></i></span>
                                 <span>كل المقالات</span>
                             </a>
                         </li>
                     </ul>
                     <li>
-                        <a href="#">
+                        <a href="index.php">
                             <span><i class="fas fa-tag"></i></span>
                             <span>عرض الموقع</span>
                         </a>
@@ -55,7 +62,18 @@ include 'include/header.php';
             <div class="col-md-10" id="main-area">
                 <!-- DISPLAY ALL POSTS -->
                 <div class="display-posts mt-4">
+                    <?php
+                    if (isset($id)) {
+                        $query = "DELETE FROM posts WHERE id = '$id'";
+                        $delete = mysqli_query($conn, $query);
 
+                        if (isset($delete)) {
+                            echo "<div class='alert alert-success text-center mt-4'>" . "تم حذف المقال بنجاح" . "</div>";
+                        } else {
+                            echo "<div class='alert alert-danger text-center mt-4'>" . "حدث خطأ ما" . "</div>";
+                        }
+                    }
+                    ?>
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -64,6 +82,7 @@ include 'include/header.php';
                                 <th>كاتب المقال</th>
                                 <th>صورة المقال</th>
                                 <th>تاريخ المقال</th>
+                                <th>حذف المقال</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,8 +102,11 @@ include 'include/header.php';
                                 <td><?php echo $num ?></td>
                                 <td><?php echo $row['postTitle']  ?></td>
                                 <td><?php echo $row['postAuthor']  ?></td>
-                                <td><?php echo $row['PostImage']  ?></td>
+                                <td class="text-center"><img src="uploads/<?php echo $row['PostImage'] ?>"
+                                        alt="post-img" style="width:100px;height:70px"></td>
                                 <td><?php echo $row['postDate']  ?></td>
+                                <td><a href="posts.php?id=<?php echo $row['id'] ?>">
+                                        <button class="btn btn-custom">حذف المقال</button></a></td>
 
                             </tr>
 
