@@ -110,7 +110,7 @@ include 'include/header.php';
 
                         <div class="form-group">
                             <label for="cate">التصنيف</label>
-                            <select id="cate" class="form-control">
+                            <select name="cate" id="cate" class="form-control">
                                 <?php
                                 $query = "SELECT * FROM categories";
                                 $res = mysqli_query($conn, $query);
@@ -118,7 +118,7 @@ include 'include/header.php';
                                 while ($row = mysqli_fetch_assoc($res)) {
 
                                 ?>
-                                <option value="<?Php echo $row['categoryName'] ?>" name="cate">
+                                <option value="<?Php echo $row['categoryName'] ?>">
                                     <?Php echo $row['categoryName'] ?>
                                 </option>
 

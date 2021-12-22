@@ -26,7 +26,7 @@ include 'public/header.php';
                 ?>
                 <div class="post">
                     <div class="post-image">
-                        <img src="images/img-1.png" alt="img-1">
+                        <img src="uploads/<?php echo $row['postImage'] ?>" alt="img-1">
                     </div>
                     <div class="post-title">
                         <h4><?php echo $row['postTitle'] ?></h4>

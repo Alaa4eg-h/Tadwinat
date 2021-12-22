@@ -102,7 +102,7 @@ $id = $_GET['id'] ?? null;
                                 <td><?php echo $num ?></td>
                                 <td><?php echo $row['postTitle']  ?></td>
                                 <td><?php echo $row['postAuthor']  ?></td>
-                                <td class="text-center"><img src="uploads/<?php echo $row['PostImage'] ?>"
+                                <td class="text-center"><img src="uploads/<?php echo $row['postImage'] ?>"
                                         alt="post-img" style="width:100px;height:70px"></td>
                                 <td><?php echo $row['postDate']  ?></td>
                                 <td><a href="posts.php?id=<?php echo $row['id'] ?>">
