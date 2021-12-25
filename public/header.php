@@ -21,7 +21,7 @@
     <!-- START NAV -->
     <nav class="navbar bg-light navbar-light navbar-expand-sm">
         <div class="container">
-            <a href="#" class="navbar-brand">تدويناتى</a>
+            <a href="index.php" class="navbar-brand">تدويناتى</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
                 <span class="navbar-toggler-icon"></span>
             </button>

@@ -50,7 +50,7 @@ include 'include/header.php';
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="logout.php">
                             <span><i class="fa fa-sign-out"></i></span>
                             <span>تسجيل الخروج</span>
                         </a>

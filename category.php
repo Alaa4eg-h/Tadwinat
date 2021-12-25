@@ -5,12 +5,11 @@ include 'public/header.php';
 
 
 
+// $query = "SELECT * FROM categories WHERE categoryName=$catName";
 
-
+// $res = mysqli_query($conn, $query);
 
 ?>
-
-
 
 
 
@@ -24,7 +23,9 @@ include 'public/header.php';
             <div class="col-md-9">
 
                 <?php
-                $query = "SELECT * FROM posts ORDER BY id DESC";
+
+                $catName = $_GET['category'];
+                $query = "SELECT * FROM posts  WHERE postCategory = '$catName' ORDER BY id DESC";
                 $res = mysqli_query($conn, $query);
 
                 while ($row = mysqli_fetch_assoc($res)) {
@@ -124,6 +125,21 @@ include 'public/header.php';
     </div>
 </div>
 <!-- END CONTENT -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -128,7 +128,7 @@ nav.navbar {
 .last-post ul li {
   border-bottom: 1px solid var(--second-color);
   margin-bottom: 10px;
-  padding: 10px 0;
+  padding: 30px 0;
 }
 
 .last-post ul li:first-child {
